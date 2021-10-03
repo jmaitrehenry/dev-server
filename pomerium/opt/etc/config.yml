@@ -1,0 +1,24 @@
+authenticate_service_url: https://authenticate.dev.jmaitrehenry.ca
+
+# https://www.pomerium.com/docs/identity-providers/github.html
+idp_provider: "github"
+idp_client_id: "REDACTED"
+idp_client_secret: "REDACTED"
+#idp_service_account: "REDACTED" // github service account (personal access token), only use if you want to validate a user group
+
+insecure_server: true
+address: 127.0.0.1:8000
+
+# # Generate 256 bit random keys  e.g. `head -c32 /dev/urandom | base64`
+cookie_secret: "REDACTED"
+
+# https://pomerium.io/reference/#routes
+routes:
+  - from: https://dev.jmaitrehenry.ca
+    to: http://localhost:3000
+    allow_websockets: true
+    policy:
+      - allow:
+          or:
+            - email:
+                is: julien@kumojin.com

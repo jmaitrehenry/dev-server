@@ -1,0 +1,20 @@
+http:
+  # Add the router
+  routers:
+    router-pomerium:
+      entryPoints:
+      - web
+      - websecure
+      middlewares:
+      - https-redirect
+      service: service-pomerium
+      rule: Host(`dev.jmaitrehenry.ca`) || Host(`authenticate.dev.jmaitrehenry.ca`)
+      tls:
+        certResolver: myresolver
+
+  # Add the service
+  services:
+    service-pomerium:
+      loadBalancer:
+        servers:
+          - url: http://localhost:8000/

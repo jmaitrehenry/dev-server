@@ -1,0 +1,12 @@
+[Unit]
+Description=VSCode Server
+ 
+[Service]
+Type=simple
+ExecStart=/home/jmaitrehenry/.vscode-server/server.sh
+Restart=always
+User=jmaitrehenry
+Group=jmaitrehenry
+
+[Install]
+WantedBy=default.target

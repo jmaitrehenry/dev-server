@@ -1,0 +1,21 @@
+entryPoints:
+  web:
+    address: ":80"
+
+  websecure:
+    address: ":443"
+
+certificatesResolvers:
+  myresolver:
+    acme:
+      email: julien.maitrehenry@me.com
+      storage: /opt/traefik/etc/acme.json
+      httpChallenge:
+        # used during the challenge
+        entryPoint: web
+
+providers:
+  file:
+    directory: "/opt/traefik/etc/conf.d"
+    watch: true
+
